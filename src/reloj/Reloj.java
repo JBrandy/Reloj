@@ -1,6 +1,14 @@
 package reloj;
 
-public class Reloj extends Label{
+import javafx.application.Platform;
+import javafx.scene.control.Label;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class Reloj extends Label {
 
     private int segundos;
     private int minutos;
@@ -36,7 +44,6 @@ public class Reloj extends Label{
     }
 
     public void start(){
-
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -45,6 +52,7 @@ public class Reloj extends Label{
                     @Override
                     public void run() {
                         calcularHora();
+                        if(minutos%2 ==0)
                         setText(horas+" : "+minutos+" : "+segundos);
                     }
                 });

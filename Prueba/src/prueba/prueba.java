@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import reloj.Reloj;
 
 public class prueba extends Application {
 
@@ -20,7 +21,6 @@ public class prueba extends Application {
         reloj.setFont(new Font(42));
 
         vBox.getChildren().add(reloj);
-        vBox.getChildren().add(new Label("Hola"));
         Scene scene = new Scene(vBox);
         stage.setScene(scene);
         stage.show();
