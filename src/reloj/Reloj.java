@@ -1,4 +1,5 @@
 package reloj;
 
-public class Reloj {
+public class Reloj extends Label{
+
 }
