@@ -3,6 +3,7 @@ package reloj;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Timer;
@@ -15,6 +16,10 @@ public class Reloj extends Label {
     private int horas;
     private int horas12;
     private Calendar calendar;
+    private LocalDate fecha;
+    private Boolean formato24Horas;
+    private int fechaNumero;
+    private Evento evento;
 
     public Reloj() {
         super ();
@@ -44,6 +49,14 @@ public class Reloj extends Label {
         this.horas = horas;
     }
 
+    public Boolean getFormato24Horas() {
+        return formato24Horas;
+    }
+
+    public void setFormato24Horas(Boolean formato24Horas) {
+        this.formato24Horas = formato24Horas;
+    }
+
     public void start(){
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
@@ -53,8 +66,8 @@ public class Reloj extends Label {
                     @Override
                     public void run() {
                         calcularHora();
-                        //if(minutos%2 ==0) poner si el usuario escoge 24 o 12
-                        setText(horas12+" : "+minutos+" : "+segundos);
+                        formatoHora();
+                        comprobarTarea();
                     }
                 });
             }
@@ -62,14 +75,38 @@ public class Reloj extends Label {
 
     }
 
-    public void calcularHora(){
+    private void comprobarTarea(Tarea tareaUsuario) {
+        for (tareaUsuario : Logica.getInstance().getListaTareas()) {
+          if(horas == tareaUsuario.getHora() && minutos ==tareaUsuario.getMinuto() && fechaNumero==tareaUsuario.getFecha().getDayOfYear()){
+            evento.inicioTarea();
+          }else
+              System.out.println("error");
+        }
+    }
+
+    private void formatoHora() {
+        if(formato24Horas !=false)
+            setText(horas12+" : "+minutos+" : "+segundos);
+        else
+            setText(horas+" : "+minutos+" : "+segundos);
+    }
+
+    private void calcularHora(){
         calendar = new GregorianCalendar();
         horas12 = calendar.get(calendar.HOUR);
         horas = calendar.get(Calendar.HOUR_OF_DAY);
-        minutos = calendar.get(Calendar.MINUTE);
         segundos = calendar.get(Calendar.SECOND);
+        minutos = calendar.get(Calendar.MINUTE);
+        fechaNumero = fecha.getDayOfYear();
 
 
     }
 
+    public void addEvento (Evento evento){
+        this.evento = evento;
+    }
+
 }
+
+
+

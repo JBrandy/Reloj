@@ -16,7 +16,7 @@ public class prueba extends Application {
 
         VBox vBox = new VBox();
         Reloj reloj = new Reloj();
-
+        reloj.formatoHora(false);
         reloj.start();
         reloj.setFont(new Font(42));
 
