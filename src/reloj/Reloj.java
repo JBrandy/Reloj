@@ -13,6 +13,7 @@ public class Reloj extends Label {
     private int segundos;
     private int minutos;
     private int horas;
+    private int horas12;
     private Calendar calendar;
 
     public Reloj() {
@@ -52,8 +53,8 @@ public class Reloj extends Label {
                     @Override
                     public void run() {
                         calcularHora();
-                        if(minutos%2 ==0)
-                        setText(horas+" : "+minutos+" : "+segundos);
+                        //if(minutos%2 ==0) poner si el usuario escoge 24 o 12
+                        setText(horas12+" : "+minutos+" : "+segundos);
                     }
                 });
             }
@@ -63,6 +64,7 @@ public class Reloj extends Label {
 
     public void calcularHora(){
         calendar = new GregorianCalendar();
+        horas12 = calendar.get(calendar.HOUR);
         horas = calendar.get(Calendar.HOUR_OF_DAY);
         minutos = calendar.get(Calendar.MINUTE);
         segundos = calendar.get(Calendar.SECOND);
