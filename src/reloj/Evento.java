@@ -1,5 +1,5 @@
 package reloj;
 
 public interface Evento {
-    void inicioTarea();
+    void inicioTarea(Tarea tarea);
 }

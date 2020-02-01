@@ -1,11 +1,12 @@
 package reloj;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Logica {
 
     private static Logica INSTANCE = null;
-    private List<Tarea> listaTareas;
+    private List<Tarea> listaTareas = new ArrayList<>();
 
     public Logica() {
 

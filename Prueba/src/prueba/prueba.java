@@ -6,7 +6,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import reloj.Evento;
+import reloj.Logica;
 import reloj.Reloj;
+import reloj.Tarea;
+
+import java.time.LocalDate;
 
 public class prueba extends Application {
 
@@ -16,8 +21,19 @@ public class prueba extends Application {
 
         VBox vBox = new VBox();
         Reloj reloj = new Reloj();
-        reloj.formatoHora(false);
+        LocalDate fecha = LocalDate.now();
+        Tarea a = new Tarea("prueba",fecha, 13,14,null );
+        Logica.getInstance().anadirTarea(a);
+        reloj.setFormato24Horas(false);
         reloj.start();
+        reloj.addEvento(new Evento() {
+            @Override
+            public void inicioTarea(Tarea tarea) {
+
+                System.out.println("hola");
+            }
+
+        });
         reloj.setFont(new Font(42));
 
         vBox.getChildren().add(reloj);

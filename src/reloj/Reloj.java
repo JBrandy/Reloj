@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.scene.control.Label;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Timer;
@@ -16,13 +17,14 @@ public class Reloj extends Label {
     private int horas;
     private int horas12;
     private Calendar calendar;
-    private LocalDate fecha;
+    private LocalDateTime fecha = LocalDateTime.now() ;
     private Boolean formato24Horas;
     private int fechaNumero;
     private Evento evento;
+    Tarea tarea;
 
     public Reloj() {
-        super ();
+        super();
     }
 
     public int getSegundos() {
@@ -57,7 +59,7 @@ public class Reloj extends Label {
         this.formato24Horas = formato24Horas;
     }
 
-    public void start(){
+    public void start() {
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -67,42 +69,47 @@ public class Reloj extends Label {
                     public void run() {
                         calcularHora();
                         formatoHora();
-                        comprobarTarea();
+                        if (Logica.getInstance().getListaTareas() != null) {
+                            comprobarTarea();
+
+                        }
+
                     }
                 });
             }
-        },1000,1000);
+        }, 1000, 1000);
 
     }
 
-    private void comprobarTarea(Tarea tareaUsuario) {
-        for (tareaUsuario : Logica.getInstance().getListaTareas()) {
-          if(horas == tareaUsuario.getHora() && minutos ==tareaUsuario.getMinuto() && fechaNumero==tareaUsuario.getFecha().getDayOfYear()){
-            evento.inicioTarea();
-          }else
-              System.out.println("error");
+    private void comprobarTarea() {
+        for (Tarea t : Logica.getInstance().getListaTareas()) {
+            if (horas == t.getHora() && minutos == t.getMinuto() && fechaNumero == t.getFecha().getDayOfYear()) {
+                evento.inicioTarea(t);
+            } else
+                System.out.println("error");
         }
     }
 
     private void formatoHora() {
-        if(formato24Horas !=false)
-            setText(horas12+" : "+minutos+" : "+segundos);
+        if (formato24Horas != false)
+            setText(horas12 + " : " + minutos + " : " + segundos);
         else
-            setText(horas+" : "+minutos+" : "+segundos);
+            setText(horas + " : " + minutos + " : " + segundos);
     }
 
-    private void calcularHora(){
+    private void calcularHora() {
         calendar = new GregorianCalendar();
         horas12 = calendar.get(calendar.HOUR);
         horas = calendar.get(Calendar.HOUR_OF_DAY);
         segundos = calendar.get(Calendar.SECOND);
         minutos = calendar.get(Calendar.MINUTE);
         fechaNumero = fecha.getDayOfYear();
+        System.out.println(fechaNumero);
 
 
     }
 
-    public void addEvento (Evento evento){
+    public void addEvento(Evento evento) {
         this.evento = evento;
     }
 
