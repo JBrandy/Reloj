@@ -8,6 +8,7 @@ public class Tarea {
     private LocalDate fecha;
     private int hora;
     private int minuto;
+    private int segundo;
     private String realizado;
 
     public Tarea(String tarea, LocalDate fecha, int hora, int minuto, String realizado) {
@@ -15,6 +16,7 @@ public class Tarea {
         this.fecha = fecha;
         this.hora = hora;
         this.minuto = minuto;
+        this.segundo = 5;
         this.realizado = realizado;
     }
 
@@ -48,6 +50,14 @@ public class Tarea {
 
     public void setMinuto(Integer minuto) {
         this.minuto = minuto;
+    }
+
+    public int getSegundo() {
+        return segundo;
+    }
+
+    public void setSegundo(int segundo) {
+        this.segundo = segundo;
     }
 
     public String getRealizado() {

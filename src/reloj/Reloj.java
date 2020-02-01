@@ -14,6 +14,7 @@ public class Reloj extends Label {
 
     private int segundos;
     private int minutos;
+
     private int horas;
     private int horas12;
     private Calendar calendar;
@@ -27,33 +28,7 @@ public class Reloj extends Label {
         super();
     }
 
-    public int getSegundos() {
-        return segundos;
-    }
 
-    public void setSegundos(int segundos) {
-        this.segundos = segundos;
-    }
-
-    public int getMinutos() {
-        return minutos;
-    }
-
-    public void setMinutos(int minutos) {
-        this.minutos = minutos;
-    }
-
-    public int getHoras() {
-        return horas;
-    }
-
-    public void setHoras(int horas) {
-        this.horas = horas;
-    }
-
-    public Boolean getFormato24Horas() {
-        return formato24Horas;
-    }
 
     public void setFormato24Horas(Boolean formato24Horas) {
         this.formato24Horas = formato24Horas;
@@ -83,7 +58,7 @@ public class Reloj extends Label {
 
     private void comprobarTarea() {
         for (Tarea t : Logica.getInstance().getListaTareas()) {
-            if (horas == t.getHora() && minutos == t.getMinuto() && fechaNumero == t.getFecha().getDayOfYear()) {
+            if (horas == t.getHora() && minutos == t.getMinuto() && fechaNumero == t.getFecha().getDayOfYear() && segundos == t.getSegundo() ) {
                 evento.inicioTarea(t);
             } else
                 System.out.println("error");

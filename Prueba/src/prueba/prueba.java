@@ -22,7 +22,7 @@ public class prueba extends Application {
         VBox vBox = new VBox();
         Reloj reloj = new Reloj();
         LocalDate fecha = LocalDate.now();
-        Tarea a = new Tarea("prueba",fecha, 13,14,null );
+        Tarea a = new Tarea("prueba",fecha, 13,25, null );
         Logica.getInstance().anadirTarea(a);
         reloj.setFormato24Horas(false);
         reloj.start();
