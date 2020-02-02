@@ -2,12 +2,11 @@ package prueba;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import reloj.Evento;
-import reloj.Logica;
+import reloj.LogicaReloj;
 import reloj.Reloj;
 import reloj.Tarea;
 
@@ -23,14 +22,13 @@ public class prueba extends Application {
         Reloj reloj = new Reloj();
         LocalDate fecha = LocalDate.now();
         Tarea a = new Tarea("prueba",fecha, 13,25, null );
-        Logica.getInstance().anadirTarea(a);
+        LogicaReloj.getInstance().anadirTarea(a);
         reloj.setFormato24Horas(false);
         reloj.start();
         reloj.addEvento(new Evento() {
             @Override
             public void inicioTarea(Tarea tarea) {
 
-                System.out.println("hola");
             }
 
         });

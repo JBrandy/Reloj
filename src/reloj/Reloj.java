@@ -3,7 +3,6 @@ package reloj;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -44,7 +43,7 @@ public class Reloj extends Label {
                     public void run() {
                         calcularHora();
                         formatoHora();
-                        if (Logica.getInstance().getListaTareas() != null) {
+                        if (LogicaReloj.getInstance().getListaTareas() != null) {
                             comprobarTarea();
 
                         }
@@ -57,11 +56,12 @@ public class Reloj extends Label {
     }
 
     private void comprobarTarea() {
-        for (Tarea t : Logica.getInstance().getListaTareas()) {
+        for (Tarea t : LogicaReloj.getInstance().getListaTareas()) {
             if (horas == t.getHora() && minutos == t.getMinuto() && fechaNumero == t.getFecha().getDayOfYear() && segundos == t.getSegundo() ) {
                 evento.inicioTarea(t);
-            } else
-                System.out.println("error");
+            } else{
+
+            }
         }
     }
 
@@ -79,7 +79,6 @@ public class Reloj extends Label {
         segundos = calendar.get(Calendar.SECOND);
         minutos = calendar.get(Calendar.MINUTE);
         fechaNumero = fecha.getDayOfYear();
-        System.out.println(fechaNumero);
 
 
     }

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Reloj">
+    <output-path>$PROJECT_DIR$/../artifacts/Reloj</output-path>
+    <root id="archive" name="Reloj.jar">
+      <element id="module-output" name="Reloj" />
+    </root>
+  </artifact>
+</component>
