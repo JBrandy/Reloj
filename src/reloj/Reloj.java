@@ -22,6 +22,11 @@ public class Reloj extends Label {
     private int fechaNumero;
     private Evento evento;
     Tarea tarea;
+    private  Timer timer;
+
+    public Boolean getFormato24Horas() {
+        return formato24Horas;
+    }
 
     public Reloj() {
         super();
@@ -33,7 +38,7 @@ public class Reloj extends Label {
     }
 
     public void start() {
-        Timer timer = new Timer();
+        timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -85,6 +90,11 @@ public class Reloj extends Label {
         fechaNumero = fecha.getDayOfYear();
 
 
+    }
+
+    public void stopReloj(){
+        timer.cancel();
+        timer.purge();
     }
 
     public void addEvento(Evento evento) {
