@@ -17,7 +17,7 @@ public class Reloj extends Label {
     private int horas;
     private int horas12;
     private Calendar calendar;
-    private LocalDateTime fecha = LocalDateTime.now() ;
+    private LocalDateTime fecha = LocalDateTime.now();
     private Boolean formato24Horas;
     private int fechaNumero;
     private Evento evento;
@@ -26,7 +26,6 @@ public class Reloj extends Label {
     public Reloj() {
         super();
     }
-
 
 
     public void setFormato24Horas(Boolean formato24Horas) {
@@ -57,9 +56,14 @@ public class Reloj extends Label {
 
     private void comprobarTarea() {
         for (Tarea t : LogicaReloj.getInstance().getListaTareas()) {
-            if (horas == t.getHora() && minutos == t.getMinuto() && fechaNumero == t.getFecha().getDayOfYear() && segundos == t.getSegundo() ) {
-                evento.inicioTarea(t);
-            } else{
+            if (formato24Horas == false) {
+                if (horas == t.getHora() && minutos == t.getMinuto() && fechaNumero == t.getFecha().getDayOfYear() && segundos == t.getSegundo()) {
+                    evento.inicioTarea(t);
+                }
+            } else {
+                if (horas12 == t.getHora() && minutos == t.getMinuto() && fechaNumero == t.getFecha().getDayOfYear() && segundos == t.getSegundo()) {
+                    evento.inicioTarea(t);
+                }
 
             }
         }
