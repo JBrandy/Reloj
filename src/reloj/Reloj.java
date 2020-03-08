@@ -4,15 +4,13 @@ import javafx.application.Platform;
 import javafx.scene.control.Label;
 
 import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class Reloj extends Label {
 
     private int segundos;
     private int minutos;
+
 
     private int horas;
     private int horas12;
@@ -103,6 +101,10 @@ public class Reloj extends Label {
         timer.cancel();
         timer.purge();
     }
+
+
+
+
 
     public void addEvento(Evento evento) {
         this.evento = evento;

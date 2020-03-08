@@ -18,7 +18,10 @@ public class LogicaReloj {
         }
         return INSTANCE;
     }
+    public void cargarTareas(List<Tarea> listaTareasCliente){
+        listaTareas=listaTareasCliente;
 
+    }
     public List<Tarea> getListaTareas() {
         return listaTareas;
     }
