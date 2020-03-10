@@ -21,7 +21,7 @@ public class Reloj extends Label {
     private Evento evento;
     Tarea tarea;
     private  Timer timer;
-
+    private List<Tarea> listaTareas = Collections.synchronizedList(new ArrayList<>());
     public Boolean getFormato24Horas() {
         return formato24Horas;
     }
@@ -45,7 +45,7 @@ public class Reloj extends Label {
                     public void run() {
                         calcularHora();
                         formatoHora();
-                        if (LogicaReloj.getInstance().getListaTareas() != null) {
+                        if (MetodosTareas.getInstance().getListaTareas() != null) {
                             comprobarTarea();
 
                         }
@@ -58,7 +58,7 @@ public class Reloj extends Label {
     }
 
     private void comprobarTarea() {
-        for (Tarea t : LogicaReloj.getInstance().getListaTareas()) {
+        for (Tarea t : MetodosTareas.getInstance().getListaTareas()) {
             //if (formato24Horas == false) {
                 if (horas == t.getHora() && minutos == t.getMinuto() && fechaNumero == t.getFecha().getDayOfYear() && segundos == t.getSegundo()) {
                     evento.inicioTarea(t);
@@ -102,9 +102,25 @@ public class Reloj extends Label {
         timer.purge();
     }
 
+    public void cargarTareas(List<Tarea> listaTareasCliente){
+        listaTareas=listaTareasCliente;
 
+    }
+    public List<Tarea> getListaTareas() {
+        return listaTareas;
+    }
 
+    public void setListaTareas(List<Tarea> listaTareas) {
+        this.listaTareas = listaTareas;
+    }
 
+    public void anadirTarea(Tarea tarea){
+        listaTareas.add(tarea);
+    }
+
+    public void borrarTarea(Tarea tarea){
+        listaTareas.remove(tarea);
+    }
 
     public void addEvento(Evento evento) {
         this.evento = evento;

@@ -11,6 +11,7 @@ public class Tarea {
     private int segundo;
     private String realizado;
 
+
     public Tarea(String tarea, LocalDate fecha, int hora, int minuto, String realizado) {
         this.tarea = tarea;
         this.fecha = fecha;

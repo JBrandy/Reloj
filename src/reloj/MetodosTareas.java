@@ -3,18 +3,18 @@ package reloj;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LogicaReloj {
+public class MetodosTareas {
 
-    private static LogicaReloj INSTANCE = null;
+    private static MetodosTareas INSTANCE = null;
     private List<Tarea> listaTareas = new ArrayList<>();
 
-    public LogicaReloj() {
+    public MetodosTareas() {
 
     }
 
-    public static LogicaReloj getInstance() {
+    public static MetodosTareas getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new LogicaReloj();
+            INSTANCE = new MetodosTareas();
         }
         return INSTANCE;
     }
