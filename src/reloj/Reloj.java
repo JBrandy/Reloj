@@ -63,7 +63,9 @@ public class Reloj extends Label {
                 if (horas == t.getHora() && minutos == t.getMinuto() && fechaNumero == t.getFecha().getDayOfYear() && segundos == t.getSegundo()) {
                     evento.inicioTarea(t);
                 }
-           /*} else {
+           /*
+           Pruebas y posible mejora
+           } else {
                 int aux = 0;
                 for (int i = 12; i < 24; i++) {
                     if(t.getHora()==i){
